@@ -1,0 +1,97 @@
+server:
+  jetty:
+    threads:
+      acceptors: 4
+      selectors: 8
+  port: 8090
+  servlet:
+    context-path: /LiuOS
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 2MB
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/liuos?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+      username: root
+      password: lj@syn2022
+      initial-size: 8
+      max-active: 16
+      min-idle: 8
+      max-wait: 60000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    password: abc123456
+    jedis:
+      pool:
+        max-active: 1000
+        max-wait: -1ms
+        max-idle: 16
+        min-idle: 8
+
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: emos
+      authentication-database: admin
+      username: admin
+      password: abc123456
+
+
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.example.liuos.dao.pojo
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    root: info
+    com.example.liuos.dao: warn
+  pattern:
+    console: "%d{HH:mm:ss}  %-5level  %msg%n"
+
+liuOS:
+  jwt:
+    #密钥
+    secret: JayLiu0624
+    #令牌过期时间（天）
+    expire:  7
+    #令牌缓存时间（天数）
+    cache-expire: 14
+    online-key: liu
+
+mail:
+  default-encoding: utf-8
+  host: smtp.aliyun.com
+  username: lj19950624@aliyun.com
+  password: lj@syn2021
+
+tencent:
+  cloud:
+    appId: 1308483147
+    secretId: AKIDVptgEVVDepjMiodBSTDgsnTryoOhjUzD
+    secretKey: zh7HAl590bvykFSO3SbT4ORDjywd8MIx
+    region: ap-beijing
+    bucket: emos-1308483147
+  trtc:
+    appId: 1400603852
+    secretKey: 1c9c5e57b79f786601b2f55598929937e5006d7556e9db3e12393778206bd037
+    expire: 86400
+
+
+emos:
+  code: 80CA7618B374E1FE
+  tcode: 470413
+
